@@ -1,0 +1,20 @@
+{
+  "name": "원금회복 스윙 프로",
+  "short_name": "스윙프로",
+  "description": "국내·해외 보유주식 수익률, 차트, AI 단기·중기 매매 판단 및 Google Sheets 동기화",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1120",
+  "theme_color": "#0f172a",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
