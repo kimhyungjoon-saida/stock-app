@@ -1502,6 +1502,15 @@
   let appState = loadLocalState();
   isAppStateReady = true;
 
+  function normalizeStockCode(code, market = "KR") {
+    const s = String(code || "").trim().toUpperCase();
+    const mkt = String(market || "KR").trim().toUpperCase() === "US" ? "US" : "KR";
+    if (mkt !== "US" && /^\d{1,6}$/.test(s)) {
+      return s.padStart(6, "0");
+    }
+    return s;
+  }
+
   function loadLocalState() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
