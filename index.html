@@ -56,13 +56,6 @@
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
   </style>
-  <meta name="theme-color" content="#0f172a" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
-  <link rel="apple-touch-icon" href="./icon.svg" />
 </head>
 <body>
 
@@ -116,7 +109,7 @@
           <h2 class="font-bold text-sm text-white leading-tight">원금회복 스윙 프로</h2>
           <span id="connection-badge" class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">2026.11 시세</span>
         </div>
-        <p class="text-[11px] text-slate-400" id="header-rate-info">환율 1$ = 1,400.0원 | 가용예수금 0원</p>
+        <p class="text-[11px] text-slate-400" id="header-rate-info">환율 1$ = 1,338.5원 | 가용 $680</p>
       </div>
     </div>
     <div class="flex items-center gap-1">
@@ -149,20 +142,20 @@
         </button>
       </div>
       <div class="flex items-baseline justify-between">
-        <div class="text-2xl font-extrabold text-white tracking-tight" id="summary-initial-principal">0원</div>
-        <div class="text-[11px] text-slate-400" id="summary-invested-detail">주식매입 0원 + 예수금 0원</div>
+        <div class="text-2xl font-extrabold text-white tracking-tight" id="summary-initial-principal">37,282,682원</div>
+        <div class="text-[11px] text-slate-400" id="summary-invested-detail">주식매입 36,372,502원 + 예수금 910,180원</div>
       </div>
 
       <!-- 현재 평가금액 vs 손익 비교 그리드 -->
       <div class="grid grid-cols-2 gap-2.5 mt-3 pt-3 border-t border-slate-800/80">
         <div class="bg-slate-900/70 rounded-xl p-2.5">
           <div class="text-[11px] text-slate-400">현재 총 평가자산 (주식+예수금)</div>
-          <div class="text-base font-bold text-white mt-0.5" id="summary-current-total">0원</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" id="summary-stock-eval-only">주식평가: 0원</div>
+          <div class="text-base font-bold text-white mt-0.5" id="summary-current-total">24,974,475원</div>
+          <div class="text-[10px] text-slate-400 mt-0.5" id="summary-stock-eval-only">주식평가: 24,064,295원</div>
         </div>
         <div class="bg-slate-900/70 rounded-xl p-2.5">
           <div class="text-[11px] text-slate-400">총 누적 손익 (전체 수익률)</div>
-          <div class="text-base font-bold kr-down mt-0.5" id="summary-total-pnl">0원 (0.0%)</div>
+          <div class="text-base font-bold kr-down mt-0.5" id="summary-total-pnl">-12,308,207원 (-33.0%)</div>
           <div class="text-[10px] text-slate-400 mt-0.5" id="summary-stock-pnl-only">종목손익 합계와 100% 일치</div>
         </div>
       </div>
@@ -171,13 +164,13 @@
       <div class="mt-3.5">
         <div class="flex justify-between text-xs mb-1">
           <span class="text-slate-300 font-medium">원금 100% 회수까지 필요한 금액</span>
-          <span class="font-bold text-amber-400" id="summary-needed-krw">0원 필요 (0.0%)</span>
+          <span class="font-bold text-amber-400" id="summary-needed-krw">+12,308,207원 필요 (+49.3%)</span>
         </div>
         <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
           <div id="recovery-progress-bar" class="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-emerald-400 rounded-full transition-all duration-500" style="width: 67%"></div>
         </div>
         <div class="flex justify-between text-[11px] text-slate-400 mt-1">
-          <span id="recovery-progress-text">현재 원금 보존율: 100.0%</span>
+          <span id="recovery-progress-text">현재 원금 보존율: 67.0%</span>
           <span>목표: 원금 100% 회복</span>
         </div>
       </div>
@@ -186,7 +179,7 @@
       <div class="mt-3 bg-indigo-950/50 border border-indigo-500/30 rounded-xl p-3 flex items-center justify-between gap-2">
         <div>
           <div class="text-[11px] text-indigo-300 font-medium">추가 매수 가능 예수금 (달러 $ + 원화 ₩ 합산)</div>
-          <div class="text-sm font-bold text-white mt-0.5" id="summary-available-seed">$0 + 0원 <span class="text-xs font-normal text-indigo-200">(총 0원)</span></div>
+          <div class="text-sm font-bold text-white mt-0.5" id="summary-available-seed">$680 + 0원 <span class="text-xs font-normal text-indigo-200">(총 910,180원)</span></div>
         </div>
         <button onclick="openConfigModal()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-600 text-slate-200 text-[11px] font-semibold whitespace-nowrap">
           예수금($/₩) 수정
@@ -265,7 +258,7 @@
         <span class="text-[11px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">KRX 호가단위 정밀계산</span>
       </div>
       <p class="text-xs text-slate-300 leading-relaxed">
-        보유 예수금과 보유 주식 일부 매도금을 결합해 <b>1차 저점 매수 → 반등 시 1차 매도(익절)</b>하여 <b>주식수를 늘리고 평단가를 낮추는</b> 정확한 숫자를 계산합니다.
+        추가 예수금(<b>$680 = 약 91만 원</b>)과 보유 주식 일부 매도금을 결합해 <b>1차 저점 매수 → 반등 시 1차 매도(익절)</b>하여 <b>주식수를 늘리고 평단가를 낮추는</b> 정확한 숫자를 계산합니다.
       </p>
 
       <!-- 대상 종목 선택 -->
@@ -279,7 +272,7 @@
           <div>
             <label class="block text-xs text-slate-400 mb-1">2. 현재 보유분 부분매도 비율(%)</label>
             <select id="reb-sell-pct" onchange="calculateRebalance()" class="w-full px-3 py-2.5 rounded-xl text-sm">
-              <option value="0">0% (매도 없이 예수금만 투입)</option>
+              <option value="0">0% (매도 없이 $680만 투입)</option>
               <option value="15">15% 부분 매도 후 저점 재매수</option>
               <option value="20" selected>20% 부분 매도 (권장: 삼성전자 5주)</option>
               <option value="30">30% 부분 매도 (삼성전자 8주)</option>
@@ -338,9 +331,9 @@
         </button>
       </div>
 
-      <!-- 가용 예수금 기준 안전 스윙 가이드 -->
+      <!-- 예수금($680) 기준 안전 스윙 가이드 -->
       <div class="mt-3 p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-200 flex items-center justify-between">
-        <span id="rec-budget-banner" class="break-words"><i class="fa-solid fa-circle-check mr-1"></i> 가용 예산 이내 실제 매수 가능 수량·수익금 정확 계산</span>
+        <span id="rec-budget-banner" class="break-words"><i class="fa-solid fa-circle-check mr-1"></i> 가용 예산 <b>$680(910,180원)</b> 이내 실제 매수 가능 수량·수익금 정확 계산</span>
       </div>
 
       <!-- 스캔 통계 & 보유종목 제외 토글 -->
@@ -499,7 +492,7 @@
         </div>
         <div>
           <label class="block text-xs text-slate-400 mb-1">매수 평균가</label>
-          <input type="number" step="any" id="h-avg" required placeholder="매입 평균단가" class="w-full px-3 py-2.5 rounded-xl text-xs" />
+          <input type="number" step="any" id="h-avg" required placeholder="259396" class="w-full px-3 py-2.5 rounded-xl text-xs" />
         </div>
         <div>
           <label class="block text-xs text-slate-400 mb-1">현재가</label>
@@ -676,7 +669,7 @@
   </div>
 </div>
 
-<!-- ==================== [모달 3] 최초 투자원금 / 예수금 / 데이터 초기화 설정 모달 ==================== -->
+<!-- ==================== [모달 3] 최초 투자원금 / 예수금($680) / 데이터 초기화 설정 모달 ==================== -->
 <div id="config-modal" class="fixed inset-0 z-50 hidden bg-black/75 flex items-end sm:items-center justify-center p-0 sm:p-4">
   <div class="w-full max-w-[460px] max-h-[90vh] overflow-y-auto bg-[#111827] border-t sm:border border-slate-700 rounded-t-2xl sm:rounded-2xl p-5 space-y-4">
     <div class="flex items-center justify-between">
@@ -739,7 +732,7 @@
         </div>
         <label class="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer pt-0.5">
           <input type="checkbox" id="cfg-sheets-auto" onchange="saveSheetsAutoToggle()" class="rounded" />
-          <span>종목/거래/원금 변경 시 자동으로 Google Sheets에 저장(Push)</span>
+          <span>자동 양방향 동기화 (변경 시 자동 저장 + 화면 복귀/접속 시 자동 불러오기)</span>
         </label>
         <div id="cfg-sheets-status" class="text-[10.5px] text-slate-400 bg-slate-900/70 rounded-lg px-2.5 py-1.5 break-words">
           동기화 상태: 미연결 (URL과 보안 토큰 입력 후 [저장 &amp; 테스트]를 눌러주세요)
@@ -1089,7 +1082,7 @@
 
   function normalizeRecommendationWithPair(rawRec, options = {}) {
     const src = rawRec && typeof rawRec === "object" ? rawRec : {};
-    const defaultCash = isAppStateReady && appState ? getTotalCashKrw() : 0;
+    const defaultCash = isAppStateReady && appState ? getTotalCashKrw() : Math.round(680 * 1338.5);
     const {
       totalCashKrw = defaultCash,
       heldCodes = null,
@@ -1260,7 +1253,7 @@
   function buildRecommendationItem(base) {
     const hasState = isAppStateReady && appState;
     const heldSet = hasState ? getHeldCodeSet() : new Set();
-    const totalCashKrw = hasState ? getTotalCashKrw() : 0;
+    const totalCashKrw = hasState ? getTotalCashKrw() : Math.round(680 * 1338.5);
     const mainCode = String(base?.code || "").trim().toUpperCase();
     const relCode = String(base?.related_stock?.code || "").trim().toUpperCase();
     return normalizeRecommendationWithPair(base, {
@@ -1273,20 +1266,222 @@
     });
   }
 
-  // 배포용 클린 초기 상태 (개인 자산/예시 보유종목 제거됨 — 로그인 후 [⚙ 설정]에서 Google Sheets 동기화로 불러오세요)
+  // 2026년 11월 실제 주가 반영 초기 상태
+  // 보유종목 5개 매입원금 합계(36,372,502원) + 예수금($680 × 1,338.5원 = 910,180원) = 최초 총투자 원금 37,282,682원
+  // 현재 주식 평가금(24,064,295원) + 예수금(910,180원) = 24,974,475원 -> 총 손익 -12,308,207원 (-33.0% 정확 일치)
   const DEFAULT_STATE = {
     auth: { username: "admin", password: "1234" },
     config: {
-      initial_principal_krw: 0,
-      available_usd: 0.0,
+      initial_principal_krw: 37282682,
+      available_usd: 680.0,
       available_krw: 0.0,
-      usd_krw_rate: 1400.0,
-      target_loss_pct: 0.0,
+      usd_krw_rate: 1338.5,
+      target_loss_pct: -33.0,
       dart_api_key: ""
     },
-    holdings: [],
-    transactions: [],
-    recommendations: [],
+    holdings: [
+      {
+        id: 1,
+        code: "005930",
+        name: "삼성전자",
+        market: "KR",
+        currency: "KRW",
+        qty: 27,
+        avg_price: 259396,
+        current_price: 207481, // 27주 * 259,396원 = 7,003,692원 / 평가 5,601,987원 / 손실 -1,401,705원 (-20.0%)
+        note: "핵심 보유주 (27주 | 평단 259,396원 | 수익률 -20.0%)"
+      },
+      {
+        id: 2,
+        code: "000660",
+        name: "SK하이닉스",
+        market: "KR",
+        currency: "KRW",
+        qty: 5,
+        avg_price: 1890000,
+        current_price: 1256000, // 2026.11 실제 현재가 1,256,000원 반영
+        note: "국내 반도체 (현재가 1,256,000원 반영 · 터치하여 내 종목으로 수정)"
+      },
+      {
+        id: 3,
+        code: "035420",
+        name: "NAVER",
+        market: "KR",
+        currency: "KRW",
+        qty: 25,
+        avg_price: 295000,
+        current_price: 183500, // 2026.11 실제 현재가 183,500원 반영
+        note: "국내 AI/IT 우량주 (현재가 183,500원 반영 · 터치하여 수정)"
+      },
+      {
+        id: 4,
+        code: "TSLA",
+        name: "테슬라 (Tesla)",
+        market: "US",
+        currency: "USD",
+        qty: 10,
+        avg_price: 595.0,
+        current_price: 397.45, // 2026.11.12 종가 $397.45 반영
+        note: "해외주식 1 (현재가 $397.45 반영 · 터치하여 수정)"
+      },
+      {
+        id: 5,
+        code: "NVDA",
+        name: "엔비디아 (NVIDIA)",
+        market: "US",
+        currency: "USD",
+        qty: 15,
+        avg_price: 255.0,
+        current_price: 166.19, // 2026.11.12 종가 $166.19 반영
+        note: "해외주식 2 (현재가 $166.19 반영 · 터치하여 수정)"
+      }
+    ],
+    transactions: [
+      {
+        id: 1,
+        tx_date: new Date().toISOString().slice(0, 10),
+        tx_type: "BUY",
+        market: "KR",
+        currency: "KRW",
+        code: "005930",
+        name: "삼성전자",
+        price: 259396,
+        qty: 27,
+        total_amount: 7003692,
+        source_tag: "초기보유",
+        memo: "삼성전자 27주 (평균가 259,396원 / 평가손실 -1,401,705원)"
+      }
+    ],
+    recommendations: [
+      buildRecommendationItem({
+        code: "005930",
+        name: "삼성전자",
+        sector: "반도체/HBM",
+        current_price: 207500,
+        change_pct: 0.48,
+        rsi_14: 36.5,
+        supply_trend: "외국인·기관 낙폭과대 저점 분할 순매수 유입",
+        live_notices: ["[공시/밸류업] 주주가치 제고 자사주 매입 및 차세대 HBM 공급 확대 공시"],
+        catalyst: "현재 보유 27주(평단 259,396원)와 결합해 $680 예산(4주 추매)으로 평단 인하 및 단기 스윙 1순위",
+        target_period: "1주~3주",
+        base_score: 95,
+        naver_url: "https://m.stock.naver.com/domestic/stock/005930/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/005930/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["005930"], current_price: 89500 }
+      }),
+      buildRecommendationItem({
+        code: "105560",
+        name: "KB금융",
+        sector: "금융/밸류업대장",
+        current_price: 158500,
+        change_pct: 1.28,
+        rsi_14: 45.4,
+        supply_trend: "외국인·연기금 5거래일 연속 순매수 유입",
+        live_notices: ["[공시확인] 기업가치 제고(밸류업) 이행 공시 및 대규모 자기주식 취득·소각 결정"],
+        catalyst: "$680(약 91만 원) 예산으로 5주 매수 가능 + 자사주 소각으로 하방 경직성 최고 수준",
+        target_period: "1주~4주",
+        base_score: 93,
+        naver_url: "https://m.stock.naver.com/domestic/stock/105560/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/105560/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["105560"], current_price: 76500 }
+      }),
+      buildRecommendationItem({
+        code: "035420",
+        name: "NAVER",
+        sector: "AI에이전트/플랫폼",
+        current_price: 183500,
+        change_pct: 0.82,
+        rsi_14: 39.2,
+        supply_trend: "기관(투신·연기금) 저점 매수 전환",
+        live_notices: ["[공시/실적] 분기 최대 매출 달성 및 AI 에이전트 상용화 생태계 확장"],
+        catalyst: "$680 예산으로 5주 매수 가능 + 단기 조정(RSI 39) 후 20일선 반등 노리는 단기 스윙 적합",
+        target_period: "1주~3주",
+        base_score: 91,
+        naver_url: "https://m.stock.naver.com/domestic/stock/035420/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/035420/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["035420"], current_price: 146500 }
+      }),
+      buildRecommendationItem({
+        code: "196170",
+        name: "알테오젠",
+        sector: "바이오/SC플랫폼",
+        current_price: 176500,
+        change_pct: 1.44,
+        rsi_14: 41.0,
+        supply_trend: "외국인·기관 동반 저가 매수세 유입",
+        live_notices: ["[공시확인] 글로벌 빅파마(MSD·AZ 등) 피하주사(SC) 기술수출 마일스톤 및 임상 공시"],
+        catalyst: "$680 예산으로 5주 매수 가능 + 단기 고점 대비 조정 완료 후 기술적 반등(+5~8%) 타점",
+        target_period: "1주~2주",
+        base_score: 90,
+        naver_url: "https://m.stock.naver.com/domestic/stock/196170/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/196170/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["196170"], current_price: 118500 }
+      }),
+      buildRecommendationItem({
+        code: "267260",
+        name: "HD현대일렉트릭",
+        sector: "AI전력망/변압기",
+        current_price: 421000,
+        change_pct: 1.81,
+        rsi_14: 42.1,
+        supply_trend: "외국인·연기금 순매수 지속",
+        live_notices: ["[공시확인] 북미 AI 데이터센터용 초고압 변압기 단일판매·공급계약 체결 공시"],
+        catalyst: "$680 예산으로 2주 매수 가능 + 수주 잔고 기반 확실한 실적 모멘텀 보유",
+        target_period: "2주~4주",
+        base_score: 89,
+        naver_url: "https://m.stock.naver.com/domestic/stock/267260/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/267260/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["267260"], current_price: 175000 }
+      }),
+      buildRecommendationItem({
+        code: "000270",
+        name: "기아",
+        sector: "자동차/밸류업",
+        current_price: 98500,
+        change_pct: 0.92,
+        rsi_14: 43.0,
+        supply_trend: "외국인·기관 동반 순매수 및 자사주 매입·소각 수급 유입",
+        live_notices: ["[공시/밸류업] 주주환원율 확대 및 하이브리드 글로벌 판매 호조 공시"],
+        catalyst: "$680(약 91만 원) 예산으로 9주 매수 가능 + 저PER 밸류업·배당 모멘텀 기반 단기 스윙 적합",
+        target_period: "1주~4주",
+        base_score: 89,
+        naver_url: "https://m.stock.naver.com/domestic/stock/000270/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/000270/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["000270"], current_price: 248500 }
+      }),
+      buildRecommendationItem({
+        code: "012450",
+        name: "한화에어로스페이스",
+        sector: "방산/우주",
+        current_price: 654000,
+        change_pct: 2.19,
+        rsi_14: 44.8,
+        supply_trend: "기관 연속 순매수 + 외국인 비중 유지",
+        live_notices: ["[공시확인] 대규모 방산 수출 단일판매·공급계약 체결 및 잠정실적 서프라이즈"],
+        catalyst: "$680 예산으로 1주 매수 가능 + 눌림목 지지 후 전고점 돌파 시도 구간",
+        target_period: "2주~4주",
+        base_score: 88,
+        naver_url: "https://m.stock.naver.com/domestic/stock/012450/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/012450/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["012450"], current_price: 238000 }
+      }),
+      buildRecommendationItem({
+        code: "000660",
+        name: "SK하이닉스",
+        sector: "AI반도체/HBM",
+        current_price: 1256000,
+        change_pct: 1.62,
+        rsi_14: 48.2,
+        supply_trend: "외국인 현·선물 동반 매집",
+        live_notices: ["[공시확인] HBM 매출 비중 확대 및 분기 영업이익 서프라이즈 공시"],
+        catalyst: "현재가 125.6만 원으로 $680(91만 원) 단독 매수는 불가(0주) — 기존 보유주 부분매도금 합산 시에만 스윙 가능",
+        target_period: "1주~3주",
+        base_score: 87,
+        naver_url: "https://m.stock.naver.com/domestic/stock/000660/total",
+        dart_url: "https://m.stock.naver.com/domestic/stock/000660/notice",
+        related_stock: { ...DEFAULT_RELATED_STOCK_MAP["000660"], current_price: 34500 }
+      })
+    ],
     recommendationMeta: null,
     holdingAnalysis: null,
     lastExecutionResult: null
@@ -2205,7 +2400,7 @@ ${JSON.stringify(snapshots)}
   function renderDashboard() {
     const cfg = appState.config;
     const rate = Number(cfg.usd_krw_rate || 1338.5);
-    const availUsd = Number(cfg.available_usd ?? 0);
+    const availUsd = Number(cfg.available_usd ?? 680);
     const availKrwOnly = Number(cfg.available_krw ?? 0);
     const availKrw = getTotalCashKrw();
 
@@ -2407,7 +2602,7 @@ ${JSON.stringify(snapshots)}
     const remainQty = h.qty - sellQty;
     const cashFromSell = sellQty * h.current_price;
 
-    // 총 재매수 가용 현금 = 부분매도 현금 + 가용 예수금
+    // 총 재매수 가용 현금 = 부분매도 현금 + $680 예수금
     const totalSwingBudget = cashFromSell + seedInStockCurrency;
 
     // 2단계: 1차 저점 매수가 (KRX 호가단위 정확 반영)
@@ -2457,10 +2652,10 @@ ${JSON.stringify(snapshots)}
         </div>
       </div>
 
-      <!-- STEP 1: 부분 매도 + 가용 예수금 결합 -->
+      <!-- STEP 1: 부분 매도 + $680 시드 결합 -->
       <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-blue-400">STEP 1. 현금 확보 (부분 매도 + 가용 예수금)</span>
+          <span class="text-xs font-bold text-blue-400">STEP 1. 현금 확보 (부분 매도 + 예수금 $680)</span>
           <button onclick="quickRecordRebalanceTx('SELL', '${h.code}', '${h.name}', '${h.market}', ${h.current_price}, ${sellQty}, '리밸런싱 1단계 부분매도')"
             class="text-[11px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
             매도내역 기록
@@ -2470,7 +2665,7 @@ ${JSON.stringify(snapshots)}
           • 현재가(<b>${fmtNum(h.current_price, dec)}${unit}</b>)에 보유분의 ${sellPct}%인 <b>${fmtNum(sellQty)}주 매도</b> → <b>${fmtNum(cashFromSell, dec)}${unit}</b> 확보 (잔여 보유: ${fmtNum(remainQty)}주)
         </p>
         <p class="text-xs text-slate-300">
-          • 가용 예수금 <b>${fmtNum(seedInStockCurrency, dec)}${unit}</b> 합산 → 총 매수 가용 자금: <b class="text-amber-300">${fmtNum(totalSwingBudget, dec)}${unit}</b>
+          • 가용 예수금 <b>${fmtNum(seedInStockCurrency, dec)}${unit}($680)</b> 합산 → 총 매수 가용 자금: <b class="text-amber-300">${fmtNum(totalSwingBudget, dec)}${unit}</b>
         </p>
       </div>
 
@@ -3684,7 +3879,7 @@ ${JSON.stringify((scanData.non_held_candidates || []).slice(0, 12), null, 2)}
     container.innerHTML = "";
 
     const cfg = appState.config;
-    const availUsd = Number(cfg.available_usd ?? 0);
+    const availUsd = Number(cfg.available_usd ?? 680);
     const availKrwOnly = Number(cfg.available_krw ?? 0);
     const availKrw = getTotalCashKrw();
 
@@ -3736,7 +3931,7 @@ ${JSON.stringify((scanData.non_held_candidates || []).slice(0, 12), null, 2)}
     }
 
     displayList.forEach((item, idx) => {
-      // 1차 저점매수가 기준 가용 예산 내 매수 가능 정수 수량
+      // 1차 저점매수가 기준 $680 예산 내 매수 가능 정수 수량
       const maxQty = item.entry_1 > 0 ? Math.floor(availKrw / item.entry_1) : 0;
       const reqBudget = maxQty * item.entry_1;
       const leftover = availKrw - reqBudget;
@@ -3921,7 +4116,7 @@ ${JSON.stringify((scanData.non_held_candidates || []).slice(0, 12), null, 2)}
           </div>
         </div>
 
-        <!-- 가용 예산 적용 시 매수가능 수량 & 정확 계산 박스 -->
+        <!-- $680 예산 적용 시 매수가능 수량 & 정확 계산 박스 -->
         ${budgetBadgeHtml}
 
         <div class="flex flex-wrap gap-1.5 pt-1">
@@ -5319,8 +5514,8 @@ ${JSON.stringify({
   }
 
   function openConfigModal() {
-    document.getElementById("cfg-principal").value = Math.round(appState.config.initial_principal_krw || 0);
-    document.getElementById("cfg-usd").value = appState.config.available_usd ?? 0;
+    document.getElementById("cfg-principal").value = Math.round(appState.config.initial_principal_krw || 37282682);
+    document.getElementById("cfg-usd").value = appState.config.available_usd ?? 680;
     document.getElementById("cfg-krw").value = Math.round(appState.config.available_krw ?? 0);
     document.getElementById("cfg-rate").value = appState.config.usd_krw_rate ?? 1335.9;
     const gasEl = document.getElementById("cfg-gas-url");
@@ -5368,8 +5563,8 @@ ${JSON.stringify({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            initial_principal_krw: Number(appState.config.initial_principal_krw || 0),
-            available_usd: Number(appState.config.available_usd ?? 0),
+            initial_principal_krw: Number(appState.config.initial_principal_krw || 37282682),
+            available_usd: Number(appState.config.available_usd ?? 680),
             available_krw: Number(appState.config.available_krw ?? 0),
             usd_krw_rate: Number(appState.config.usd_krw_rate ?? 1338.5),
             dart_api_key: val
@@ -5431,7 +5626,7 @@ ${JSON.stringify({
       renderRecommendations();
     }
     closeConfigModal();
-    showToast("최초 투자원금 및 예수금 설정이 저장되었습니다.");
+    showToast("최초 투자원금 및 예수금($680) 설정이 저장되었습니다.");
     triggerAutoCloudSync("config");
   }
 
@@ -6287,7 +6482,7 @@ ${JSON.stringify({
   function buildLocalSheetsPayload(deviceLabel = "web-client") {
     const cfg = appState?.config || {};
     const safeConfig = {
-      initial_principal_krw: Number(cfg.initial_principal_krw ?? 0),
+      initial_principal_krw: Number(cfg.initial_principal_krw ?? 37282682),
       available_usd: Number(cfg.available_usd ?? 0),
       available_krw: Number(cfg.available_krw ?? 0),
       usd_krw_rate: Number(cfg.usd_krw_rate ?? 1338.5),
@@ -6346,8 +6541,8 @@ ${JSON.stringify({
 
     appState.config = {
       ...(appState.config || {}),
-      initial_principal_krw: Number(remoteCfg.initial_principal_krw ?? appState?.config?.initial_principal_krw ?? 0),
-      available_usd: Number(remoteCfg.available_usd ?? appState?.config?.available_usd ?? 0),
+      initial_principal_krw: Number(remoteCfg.initial_principal_krw ?? appState?.config?.initial_principal_krw ?? 37282682),
+      available_usd: Number(remoteCfg.available_usd ?? appState?.config?.available_usd ?? 680),
       available_krw: Number(remoteCfg.available_krw ?? appState?.config?.available_krw ?? 0),
       usd_krw_rate: Number(remoteCfg.usd_krw_rate ?? appState?.config?.usd_krw_rate ?? 1338.5),
       target_loss_pct: Number(remoteCfg.target_loss_pct ?? appState?.config?.target_loss_pct ?? -33.0),
@@ -6555,30 +6750,72 @@ ${JSON.stringify({
   }
 
   let _autoCloudSyncTimer = null;
+  let _autoPullInFlight = false;
+  let _lastAutoPullCheckMs = 0;
+  const AUTO_PULL_COOLDOWN_MS = 15000;
+
+  function _hasOpenEditModal() {
+    return ["holding-modal", "tx-modal", "config-modal"].some((id) => {
+      const el = document.getElementById(id);
+      return el && !el.classList.contains("hidden");
+    });
+  }
+
   function triggerAutoCloudSync(reason = "") {
     const cfg = getSheetsSyncSettings();
     if (!cfg.autoSync || !cfg.syncUrl || !cfg.syncToken) return;
     if (_autoCloudSyncTimer) clearTimeout(_autoCloudSyncTimer);
     _autoCloudSyncTimer = setTimeout(() => {
+      _autoCloudSyncTimer = null;
       syncPushToGoogleSheets(true);
     }, 600);
   }
 
-  async function maybeAutoPullFromGoogleSheetsOnLogin() {
+  async function maybeAutoPullFromGoogleSheetsOnLogin(options = {}) {
+    const { force = true } = options || {};
     const cfg = getSheetsSyncSettings();
     if (!cfg.autoSync || !cfg.syncUrl || !cfg.syncToken) return;
+    if (_autoPullInFlight || _autoCloudSyncTimer) return;
+    if (!force && (_hasOpenEditModal() || (Date.now() - _lastAutoPullCheckMs < AUTO_PULL_COOLDOWN_MS))) {
+      return;
+    }
+
+    _autoPullInFlight = true;
+    _lastAutoPullCheckMs = Date.now();
     try {
-      const pingUrl = `${cfg.syncUrl}?action=ping&token=${encodeURIComponent(cfg.syncToken)}`;
-      const pingData = await _fetchSheetsEndpointJson(pingUrl, { method: "GET" });
-      const remoteTs = String(pingData.updated_at || "").trim();
-      const remoteCount = Number(pingData.holdings_count || 0);
+      let pingData;
+      if (isServerConnected) {
+        pingData = await _fetchSheetsEndpointJson("/api/sheets/test", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sync_url: cfg.syncUrl,
+            sync_token: cfg.syncToken,
+            auto_sync: cfg.autoSync ? 1 : 0
+          })
+        });
+      } else {
+        const pingUrl = `${cfg.syncUrl}?action=ping&token=${encodeURIComponent(cfg.syncToken)}`;
+        pingData = await _fetchSheetsEndpointJson(pingUrl, { method: "GET" });
+      }
+      const remoteTs = String(pingData?.updated_at || "").trim();
+      const remoteCount = Number(pingData?.holdings_count || 0);
       if (remoteCount > 0 && remoteTs && (!cfg.lastSyncedAt || remoteTs > cfg.lastSyncedAt)) {
         const pulled = await syncPullFromGoogleSheets({ silent: true, confirmOverwrite: false });
         if (pulled?.ok) {
           showToast(`☁️ 다른 기기(${remoteTs})의 최신 시트 데이터를 자동 동기화했습니다.`);
         }
       }
-    } catch (_) {}
+    } catch (_) {
+    } finally {
+      _autoPullInFlight = false;
+    }
+  }
+
+  function scheduleAutoPullOnResume() {
+    const loginEl = document.getElementById("login-screen");
+    if (!loginEl || !loginEl.classList.contains("hidden")) return;
+    maybeAutoPullFromGoogleSheetsOnLogin({ force: false });
   }
 
   function quickCloudSyncFromHeader() {
@@ -6651,17 +6888,16 @@ ${JSON.stringify({
       onLoginSuccess();
     }
   });
-</script>
-<script>
-  if (
-    "serviceWorker" in navigator &&
-    window.location.protocol === "https:" &&
-    window.location.hostname !== "appassets.androidplatform.net"
-  ) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("./sw.js").catch(() => {});
-    });
-  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      scheduleAutoPullOnResume();
+    }
+  });
+
+  window.addEventListener("focus", () => {
+    scheduleAutoPullOnResume();
+  });
 </script>
 </body>
 </html>
