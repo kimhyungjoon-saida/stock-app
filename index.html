@@ -120,9 +120,6 @@
       </div>
     </div>
     <div class="flex items-center gap-1">
-      <button onclick="quickCloudSyncFromHeader()" id="btn-cloud-sync" title="Google Sheets 클라우드 DB 동기화" class="px-2 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-[11px] font-semibold flex items-center gap-1 whitespace-nowrap">
-        <i id="cloud-sync-icon" class="fa-solid fa-cloud"></i><span id="cloud-sync-badge" class="hidden sm:inline">시트</span>
-      </button>
       <button onclick="refreshLivePricesInStandalone(false)" id="btn-live-sync" class="px-2 py-1.5 rounded-lg bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-600/30 text-[11px] font-semibold flex items-center gap-1 whitespace-nowrap">
         <i id="sync-icon" class="fa-solid fa-rotate"></i> 시세갱신
       </button>
@@ -238,9 +235,14 @@
       </div>
 
       <div id="home-gemini-key-box" class="hidden space-y-1.5 pt-1 border-t border-slate-800/80">
-        <div class="flex items-center justify-between text-[11px] text-slate-400">
+        <div class="flex items-center justify-between gap-2 text-[11px] text-slate-400">
           <span>Google Gemini API 키 (단독/서버 겸용)</span>
-          <a href="https://aistudio.google.com/apikey" target="_blank" class="text-indigo-400 underline">무료 키 발급</a>
+          <div class="flex items-center gap-2 shrink-0">
+            <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="text-indigo-400 underline">무료 키 발급 ↗</a>
+            <button type="button" onclick="openSetupManualModal('gemini')" class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10px] text-sky-300 font-semibold">
+              📘 발급·설정법
+            </button>
+          </div>
         </div>
         <input type="password" id="home-gemini-key-input" placeholder="Gemini API Key (AIza...)"
           oninput="handleGeminiKeyInputChange(this.value, 'home')"
@@ -381,7 +383,12 @@
           </h4>
           <p class="text-[11px] text-slate-400 break-words">전 종목 지분/수주 공시·4축 스캔 + 3트랙(인기/글로벌IB/신기술) 1:1 추천</p>
         </div>
-        <a href="https://aistudio.google.com/apikey" target="_blank" class="text-[11px] text-indigo-400 underline whitespace-nowrap shrink-0">무료 키 발급</a>
+        <div class="flex flex-col items-end gap-1 shrink-0">
+          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="text-[11px] text-indigo-400 underline whitespace-nowrap">무료 키 발급 ↗</a>
+          <button type="button" onclick="openSetupManualModal('gemini')" class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10px] text-sky-300 font-semibold whitespace-nowrap">
+            📘 발급·설정법
+          </button>
+        </div>
       </div>
       <div class="flex gap-2">
         <input type="password" id="gemini-api-key-input" placeholder="Google Gemini API Key 입력 (AIza...)"
@@ -679,9 +686,14 @@
 <!-- ==================== [모달 3] 최초 투자원금 / 예수금 / 데이터 초기화 설정 모달 ==================== -->
 <div id="config-modal" class="fixed inset-0 z-50 hidden bg-black/75 flex items-end sm:items-center justify-center p-0 sm:p-4">
   <div class="w-full max-w-[460px] max-h-[90vh] overflow-y-auto bg-[#111827] border-t sm:border border-slate-700 rounded-t-2xl sm:rounded-2xl p-5 space-y-4">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between gap-2">
       <h3 class="text-base font-bold text-white">최초 총투자 원금 & 예수금/시세 설정</h3>
-      <button onclick="closeConfigModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" onclick="openSetupManualModal('gemini')" class="px-2.5 py-1 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/40 text-sky-300 text-[11px] font-semibold whitespace-nowrap">
+          📘 전체 매뉴얼
+        </button>
+        <button onclick="closeConfigModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
     </div>
 
     <form onsubmit="saveConfigForm(event)" class="space-y-3">
@@ -725,9 +737,14 @@
           </h4>
           <p class="text-[10.5px] text-slate-400 mt-0.5 break-words">보유종목·거래내역·원금/예수금을 내 구글 시트에 저장해 PC와 스마트폰에서 동일하게 사용합니다 (API 키·비밀번호는 제외)</p>
         </div>
-        <button type="button" onclick="openSheetsGuideModal()" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10.5px] text-indigo-300 font-semibold whitespace-nowrap shrink-0">
-          3분 설치법
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <a href="https://sheets.google.com" target="_blank" rel="noopener" class="px-2 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-[10.5px] text-emerald-300 font-semibold whitespace-nowrap">
+            시트 열기 ↗
+          </a>
+          <button type="button" onclick="openSetupManualModal('sheets')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10.5px] text-sky-300 font-semibold whitespace-nowrap">
+            📘 발급·설정법
+          </button>
+        </div>
       </div>
       <div class="space-y-1.5">
         <input type="text" id="cfg-sheets-url" placeholder="Google Sheets 웹 앱 URL (https://script.google.com/macros/s/.../exec)" class="w-full px-3 py-2 rounded-xl text-xs" />
@@ -763,18 +780,51 @@
           <i class="fa-solid fa-triangle-exclamation mr-1"></i>전체 데이터 초기화
         </button>
       </div>
-      <div>
-        <label class="block text-xs text-slate-300 mb-1">🌐 나만의 무료 실시간 시세 서버 URL (Google Apps Script - 배치 없이 실행용)</label>
-        <div class="flex gap-2">
-          <input type="text" id="cfg-gas-url" placeholder="https://script.google.com/macros/s/.../exec" class="flex-1 min-w-0 px-3 py-2 rounded-xl text-xs" />
-          <button type="button" onclick="saveGasUrl()" class="px-3 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold whitespace-nowrap shrink-0">저장</button>
+      <div class="pt-1 space-y-2.5">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1">
+            <label class="text-xs text-slate-300 font-medium">🤖 Google Gemini API 키 (AI 매매 판단·추천 공용)</label>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="text-[10.5px] text-indigo-400 underline whitespace-nowrap">발급 사이트 ↗</a>
+              <button type="button" onclick="openSetupManualModal('gemini')" class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10px] text-sky-300 font-semibold whitespace-nowrap">
+                📘 발급·설정법
+              </button>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <input type="password" id="cfg-gemini-key" placeholder="Gemini API Key (AIza...)" class="flex-1 min-w-0 px-3 py-2 rounded-xl text-xs" />
+            <button type="button" onclick="saveConfigGeminiApiKey()" class="px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold whitespace-nowrap shrink-0">저장</button>
+          </div>
         </div>
-      </div>
-      <div>
-        <label class="block text-xs text-slate-300 mb-1">🏛️ (선택) OpenDART 전자공시 API 키 (미입력 시 네이버 공시 자동 연동)</label>
-        <div class="flex gap-2">
-          <input type="password" id="cfg-dart-key" placeholder="OpenDART API Key (선택사항)" class="flex-1 min-w-0 px-3 py-2 rounded-xl text-xs" />
-          <button type="button" onclick="saveDartApiKey()" class="px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold whitespace-nowrap shrink-0">저장</button>
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1">
+            <label class="text-xs text-slate-300">🌐 실시간 시세 서버 URL (Google Apps Script 프록시)</label>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <a href="https://script.google.com" target="_blank" rel="noopener" class="text-[10.5px] text-emerald-400 underline whitespace-nowrap">Apps Script ↗</a>
+              <button type="button" onclick="openSetupManualModal('gas')" class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10px] text-sky-300 font-semibold whitespace-nowrap">
+                📘 설정법
+              </button>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="cfg-gas-url" placeholder="https://script.google.com/macros/s/.../exec" class="flex-1 min-w-0 px-3 py-2 rounded-xl text-xs" />
+            <button type="button" onclick="saveGasUrl()" class="px-3 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold whitespace-nowrap shrink-0">저장</button>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1">
+            <label class="text-xs text-slate-300">🏛️ (선택) OpenDART 전자공시 API 키 (미입력 시 네이버 공시 연동)</label>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <a href="https://opendart.fss.or.kr" target="_blank" rel="noopener" class="text-[10.5px] text-amber-300 underline whitespace-nowrap">발급 사이트 ↗</a>
+              <button type="button" onclick="openSetupManualModal('dart')" class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[10px] text-sky-300 font-semibold whitespace-nowrap">
+                📘 발급·설정법
+              </button>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <input type="password" id="cfg-dart-key" placeholder="OpenDART API Key (40자리 선택사항)" class="flex-1 min-w-0 px-3 py-2 rounded-xl text-xs" />
+            <button type="button" onclick="saveDartApiKey()" class="px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold whitespace-nowrap shrink-0">저장</button>
+          </div>
         </div>
       </div>
     </div>
@@ -816,6 +866,163 @@
         📋 Apps Script 코드 복사하기
       </button>
       <button type="button" onclick="closeSheetsGuideModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold">
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== [모달 3-2] API 키 발급 & 전체 설정 매뉴얼 모달 ==================== -->
+<div id="setup-manual-modal" class="fixed inset-0 z-[60] hidden bg-black/85 flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="if (event.target === this) closeSetupManualModal()">
+  <div class="w-full max-w-[500px] max-h-[90vh] flex flex-col bg-[#111827] border-t sm:border border-slate-700 rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-2xl">
+    <div class="px-5 py-3.5 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0">
+      <div>
+        <h3 class="text-sm font-bold text-white">📘 API 키 발급 &amp; 설정 매뉴얼</h3>
+        <p class="text-[11px] text-slate-400 mt-0.5">각 항목별 발급 사이트 바로가기 · 메뉴 경로 · 앱 입력 방법</p>
+      </div>
+      <button type="button" onclick="closeSetupManualModal()" class="text-slate-400 hover:text-white p-1">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <div class="px-4 py-2.5 border-b border-slate-800 flex flex-wrap gap-1.5 bg-slate-900/60 shrink-0">
+      <button type="button" data-manual-tab="gemini" onclick="switchSetupManualTab('gemini')" class="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-indigo-600 text-white">
+        🔑 Gemini AI
+      </button>
+      <button type="button" data-manual-tab="dart" onclick="switchSetupManualTab('dart')" class="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300">
+        🏛️ OpenDART
+      </button>
+      <button type="button" data-manual-tab="sheets" onclick="switchSetupManualTab('sheets')" class="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300">
+        ☁️ 구글 시트
+      </button>
+      <button type="button" data-manual-tab="gas" onclick="switchSetupManualTab('gas')" class="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300">
+        🌐 시세 프록시
+      </button>
+      <button type="button" data-manual-tab="device" onclick="switchSetupManualTab('device')" class="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300">
+        📱 PC·폰 연동
+      </button>
+    </div>
+
+    <div class="p-4 overflow-y-auto space-y-3 text-xs text-slate-200 leading-relaxed flex-1">
+      <!-- 1. Gemini API 키 -->
+      <div id="manual-panel-gemini" class="space-y-3">
+        <div class="p-3 rounded-xl bg-indigo-950/50 border border-indigo-500/40 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="text-[11px] text-indigo-300 font-bold">발급 사이트 · Google AI Studio</div>
+            <div class="text-[11px] text-slate-300 truncate">https://aistudio.google.com/apikey</div>
+          </div>
+          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold whitespace-nowrap shrink-0">
+            사이트 열기 ↗
+          </a>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">1) 사이트 들어가서 키 확인·발급하는 방법</div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-300">
+            <li>위 <b>사이트 열기 ↗</b> 클릭 후 본인 Google 계정으로 로그인합니다.</li>
+            <li>왼쪽 메뉴 <b>[API keys]</b> (또는 <b>[Get API key]</b>)로 들어갑니다.</li>
+            <li>이미 만든 키가 있으면 목록에서 클릭해 <code class="text-emerald-300">AIza...</code> 문자열을 복사합니다.</li>
+            <li>키가 없으면 우측 상단 <b>[Create API key]</b>를 눌러 무료로 새 키를 생성합니다.</li>
+          </ol>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">2) 앱에 입력하는 방법</div>
+          <p class="text-slate-300"><b>[⚙ 설정 → 🤖 Google Gemini API 키]</b> 또는 홈 화면 AI 카드의 <b>[🔑 API키]</b> 칸에 붙여넣고 <b>[저장]</b>을 누릅니다. (보유종목 판단 &amp; 종목 추천 공용)</p>
+        </div>
+        <div class="p-2.5 rounded-xl bg-amber-950/40 border border-amber-500/30 text-[11px] text-amber-200">
+          🔒 <b>보안 안내:</b> API 키는 Google Sheets에 저장되지 않으므로 PC와 스마트폰에서 각각 1회씩 입력해 주세요. (유료 결제 미연결 무료 티어 사용 권장)
+        </div>
+      </div>
+
+      <!-- 2. OpenDART API 키 -->
+      <div id="manual-panel-dart" class="space-y-3 hidden">
+        <div class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/40 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="text-[11px] text-amber-300 font-bold">발급 사이트 · 금융감독원 OpenDART</div>
+            <div class="text-[11px] text-slate-300 truncate">https://opendart.fss.or.kr</div>
+          </div>
+          <a href="https://opendart.fss.or.kr" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-[11px] font-semibold whitespace-nowrap shrink-0">
+            사이트 열기 ↗
+          </a>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">1) 사이트 들어가서 키 확인·발급하는 방법</div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-300">
+            <li>위 <b>사이트 열기 ↗</b> 클릭 후 회원가입 및 로그인합니다.</li>
+            <li><b>처음 발급 시:</b> 상단 메뉴 <b>[인증키 신청/관리] → [인증키 신청]</b> 선택 → 활용 목적 입력(예: 개인 투자 공시 확인) → 이메일 인증 링크 클릭으로 활성화합니다.</li>
+            <li><b>기존 키 확인 시:</b> 상단 <b>[인증키 신청/관리] → [오픈API 이용현황]</b> 화면에서 <b>40자리 영문+숫자 인증키</b>를 복사합니다.</li>
+          </ol>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">2) 앱에 입력하는 방법</div>
+          <p class="text-slate-300"><b>[⚙ 설정 → 🏛️ OpenDART 전자공시 API 키]</b> 칸에 붙여넣고 <b>[저장]</b>을 누릅니다. (선택 사항이며, 미입력 시 네이버 공시 기준으로 정상 동작합니다.)</p>
+        </div>
+      </div>
+
+      <!-- 3. Google Sheets 클라우드 DB -->
+      <div id="manual-panel-sheets" class="space-y-3 hidden">
+        <div class="grid grid-cols-2 gap-2">
+          <a href="https://sheets.google.com" target="_blank" rel="noopener" class="p-2.5 rounded-xl bg-emerald-950/50 border border-emerald-500/40 text-center text-[11px] font-semibold text-emerald-300 hover:bg-emerald-900/50">
+            1. Google Sheets 열기 ↗
+          </a>
+          <a href="https://script.google.com" target="_blank" rel="noopener" class="p-2.5 rounded-xl bg-sky-950/50 border border-sky-500/40 text-center text-[11px] font-semibold text-sky-300 hover:bg-sky-900/50">
+            2. Apps Script 열기 ↗
+          </a>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">PC ↔ 스마트폰 클라우드 DB 전체 설정 순서</div>
+          <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
+            <li><b>Google Sheets 새 파일 생성:</b> 파일 제목 변경·드라이브 폴더 이동은 자유롭습니다. (복사본 만들기 말고 이동만 사용 · 하단 탭 <code class="text-emerald-300">Config</code>, <code class="text-emerald-300">Holdings</code>, <code class="text-emerald-300">Transactions</code>, <code class="text-emerald-300">Snapshot</code>과 1행 영문 헤더는 유지)</li>
+            <li><b>Apps Script 열기:</b> 시트 메뉴 <b>[확장 프로그램] → [Apps Script]</b> 클릭 후 기존 코드를 모두 지우고 프로젝트의 <code class="text-emerald-300">google_apps_script_sync.gs</code> 전체를 붙여넣습니다.</li>
+            <li><b>코드 2줄 입력 후 저장(Ctrl+S):</b><br/>• 14번째 줄 <code class="text-amber-300">DEFAULT_SYNC_TOKEN</code>: 본인이 정할 비밀번호<br/>• 167번째 줄 <code class="text-amber-300">SPREADSHEET_ID</code>: 시트 주소의 <code class="text-sky-300">/d/</code>와 <code class="text-sky-300">/edit</code> 사이 ID</li>
+            <li><b>권한 승인 (1회):</b> 편집기 상단에서 함수를 <b>setupSheets</b>로 고르고 <b>[▷ 실행]</b> 클릭 → <i>권한 검토 → 고급 → 안전하지 않음으로 이동 → 허용</i> 진행</li>
+            <li><b>웹 앱 배포:</b> 우측 상단 <b>[배포] → [새 배포] → 웹 앱</b> (실행 주체: <b>나(Me)</b>, 액세스: <b>모든 사용자(Anyone)</b>). 코드 수정 후 재배포 시에는 <b>[배포 관리] → 연필 → 버전: 새 버전</b>을 반드시 선택!</li>
+            <li><b>앱 연동:</b> 발급된 <code class="text-sky-300">.../exec</code> URL과 토큰을 입력 → <b>[저장 &amp; 테스트]</b> → PC에서 <b>[☁️ 시트로 저장(Push)]</b> 1회 실행 → 양쪽 기기에서 <b>[☑ 자동 양방향 동기화]</b> 켜기</li>
+          </ol>
+        </div>
+        <button type="button" onclick="copyGoogleSheetsScript()" class="w-full py-2 rounded-xl bg-indigo-600/90 hover:bg-indigo-500 text-white text-xs font-semibold">
+          📋 Apps Script 간략 템플릿 복사 (전체 코드는 google_apps_script_sync.gs)
+        </button>
+      </div>
+
+      <!-- 4. 실시간 시세 서버 URL -->
+      <div id="manual-panel-gas" class="space-y-3 hidden">
+        <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="text-[11px] text-emerald-300 font-bold">설정 사이트 · Google Apps Script</div>
+            <div class="text-[11px] text-slate-300 truncate">https://script.google.com</div>
+          </div>
+          <a href="https://script.google.com" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold whitespace-nowrap shrink-0">
+            사이트 열기 ↗
+          </a>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">이 설정은 언제 쓰나요?</div>
+          <p class="text-slate-300">PC 서버 없이 스마트폰/웹에서 단독 실행할 때 브라우저 보안(CORS)으로 막히는 실시간 주가·공시·수급 조회(<code class="text-sky-300">?url=...</code>)를 Google 서버가 대신 읽어다 주는 중계 주소입니다.</p>
+          <p class="text-slate-300">기본 프록시 주소가 이미 내장되어 있어 비워두어도 동작하며, <b>본인이 만든 Google Sheets 동기화 웹 앱 URL(<code class="text-sky-300">.../exec</code>)을 이 칸에 그대로 붙여넣고 [저장]</b>하면 시세 프록시와 DB 동기화를 1개 주소로 함께 쓸 수 있습니다.</p>
+        </div>
+      </div>
+
+      <!-- 5. PC & 스마트폰 연동/배포 -->
+      <div id="manual-panel-device" class="space-y-3 hidden">
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">1) PC에서 실행하기</div>
+          <p class="text-slate-300">프로젝트 폴더의 <code class="text-emerald-300">run_server.bat</code>을 실행한 뒤 브라우저에서 <code class="text-sky-300">http://localhost:8000</code>으로 접속합니다. (파일 직접 더블클릭 <code class="text-rose-300">file://</code>은 동기화 차단될 수 있음)</p>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="font-bold text-white">2) 스마트폰(외출 중 LTE/5G)에서 접속하기</div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-300">
+            <li>PC에서 업데이트 후 배포용 폴더(<code class="text-emerald-300">deploy/index.html</code>)를 GitHub 저장소에 <b>Add file → Upload files</b>로 덮어쓰기 커밋합니다.</li>
+            <li>1~2분 뒤 스마트폰 Chrome에서 GitHub Pages 주소를 새로고침하고, 메뉴 <b>[⋮] → 앱 설치 / 홈 화면에 추가</b>로 앱처럼 실행합니다.</li>
+          </ol>
+        </div>
+        <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/30 space-y-1 text-[11px] text-indigo-200">
+          <div><b>🔄 자동 동기화 팁:</b> PC와 스마트폰 양쪽 모두 <b>[☑ 자동 양방향 동기화]</b>를 켜두면 수정 시 자동 저장(Push), 다른 기기로 돌아오면 화면 복귀 시 자동 불러오기(Pull)가 동작합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-4 py-3 border-t border-slate-800 bg-slate-900/50 flex justify-end shrink-0">
+      <button type="button" onclick="closeSetupManualModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs font-semibold">
         닫기
       </button>
     </div>
@@ -1301,11 +1508,24 @@
       if (raw) {
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed === "object") {
-          return {
+          const state = {
             ...DEFAULT_STATE,
             ...parsed,
             config: { ...DEFAULT_STATE.config, ...(parsed.config || {}) },
           };
+          if (Array.isArray(state.holdings)) {
+            state.holdings = state.holdings.map((h) => ({
+              ...h,
+              code: normalizeStockCode(h?.code, h?.market || "KR")
+            }));
+          }
+          if (Array.isArray(state.transactions)) {
+            state.transactions = state.transactions.map((t) => ({
+              ...t,
+              code: normalizeStockCode(t?.code, t?.market || "KR")
+            }));
+          }
+          return state;
         }
       }
     } catch (e) {}
@@ -1462,8 +1682,10 @@
     }
     const homeInput = document.getElementById("home-gemini-key-input");
     const recInput = document.getElementById("gemini-api-key-input");
+    const cfgInput = document.getElementById("cfg-gemini-key");
     if (source !== "home" && homeInput) homeInput.value = val || "";
     if (source !== "recommend" && recInput) recInput.value = val || "";
+    if (source !== "config" && cfgInput) cfgInput.value = val || "";
   }
 
   function toggleHomeGeminiKeyBox() {
@@ -4147,10 +4369,11 @@ ${JSON.stringify((scanData.non_held_candidates || []).slice(0, 12), null, 2)}
   async function saveHoldingForm(e) {
     e.preventDefault();
     const idVal = document.getElementById("h-id").value;
+    const market = document.getElementById("h-market").value;
     const payload = {
       id: idVal ? Number(idVal) : null,
-      market: document.getElementById("h-market").value,
-      code: document.getElementById("h-code").value.trim().toUpperCase(),
+      market,
+      code: normalizeStockCode(document.getElementById("h-code").value, market),
       name: document.getElementById("h-name").value.trim(),
       qty: Number(document.getElementById("h-qty").value),
       avg_price: Number(document.getElementById("h-avg").value),
@@ -5325,6 +5548,8 @@ ${JSON.stringify({
     document.getElementById("cfg-rate").value = appState.config.usd_krw_rate ?? 1335.9;
     const gasEl = document.getElementById("cfg-gas-url");
     if (gasEl) gasEl.value = getGasProxyUrl();
+    const geminiEl = document.getElementById("cfg-gemini-key");
+    if (geminiEl) geminiEl.value = (localStorage.getItem("GEMINI_API_KEY") || appState.config?.gemini_api_key || "").trim();
     const dartEl = document.getElementById("cfg-dart-key");
     if (dartEl) dartEl.value = (localStorage.getItem("DART_API_KEY") || appState.config?.dart_api_key || "").trim();
 
@@ -5348,6 +5573,16 @@ ${JSON.stringify({
     }
     localStorage.setItem("GAS_PROXY_URL", val);
     showToast(val ? "✅ 나만의 Google 실시간 시세 URL이 저장되었습니다! 이제 [시세갱신]을 눌러보세요." : "URL이 초기화되었습니다.");
+  }
+
+  function saveConfigGeminiApiKey() {
+    const val = (document.getElementById("cfg-gemini-key")?.value || "").trim();
+    handleGeminiKeyInputChange(val, "config");
+    if (!appState.config) appState.config = {};
+    appState.config.gemini_api_key = val;
+    saveLocalState();
+    syncGeminiKeyInputs(false);
+    showToast(val ? "✅ Google Gemini API 키가 저장되었습니다. (보유종목 판단·추천 공용)" : "Gemini API 키가 삭제되었습니다.");
   }
 
   async function saveDartApiKey() {
@@ -6300,8 +6535,12 @@ ${JSON.stringify({
       updated_at: nowStr,
       device_label: String(deviceLabel || (isServerConnected ? "pc-web" : "mobile-standalone")),
       config: safeConfig,
-      holdings: Array.isArray(appState?.holdings) ? JSON.parse(JSON.stringify(appState.holdings)) : [],
-      transactions: Array.isArray(appState?.transactions) ? JSON.parse(JSON.stringify(appState.transactions)) : [],
+      holdings: Array.isArray(appState?.holdings)
+        ? appState.holdings.map((h) => ({ ...JSON.parse(JSON.stringify(h)), code: normalizeStockCode(h?.code, h?.market || "KR") }))
+        : [],
+      transactions: Array.isArray(appState?.transactions)
+        ? appState.transactions.map((t) => ({ ...JSON.parse(JSON.stringify(t)), code: normalizeStockCode(t?.code, t?.market || "KR") }))
+        : [],
       holdingAnalysis: appState?.holdingAnalysis ? JSON.parse(JSON.stringify(appState.holdingAnalysis)) : null,
       lastExecutionResult: appState?.lastExecutionResult ? JSON.parse(JSON.stringify(appState.lastExecutionResult)) : null,
       recommendations: Array.isArray(appState?.recommendations) ? JSON.parse(JSON.stringify(appState.recommendations)) : null,
@@ -6314,7 +6553,10 @@ ${JSON.stringify({
     if (!payload || typeof payload !== "object") {
       return { ok: false, message: "원격 동기화 데이터 형식이 올바르지 않습니다." };
     }
-    const remoteHoldings = Array.isArray(payload.holdings) ? payload.holdings : [];
+    const remoteHoldings = (Array.isArray(payload.holdings) ? payload.holdings : []).map((h) => ({
+      ...h,
+      code: normalizeStockCode(h?.code, h?.market || "KR")
+    }));
     if (remoteHoldings.length === 0 && !allowEmptyOverwrite) {
       return {
         ok: false,
@@ -6323,7 +6565,10 @@ ${JSON.stringify({
       };
     }
 
-    const remoteTxs = Array.isArray(payload.transactions) ? payload.transactions : [];
+    const remoteTxs = (Array.isArray(payload.transactions) ? payload.transactions : []).map((t) => ({
+      ...t,
+      code: normalizeStockCode(t?.code, t?.market || "KR")
+    }));
     if (confirmOverwrite && Array.isArray(appState?.holdings) && appState.holdings.length > 0) {
       const ok = confirm(
         `📥 Google Sheets 데이터를 현재 기기에 반영할까요?\n\n` +
@@ -6631,8 +6876,32 @@ ${JSON.stringify({
     }
   }
 
+  function switchSetupManualTab(tabKey = "gemini") {
+    const validTabs = ["gemini", "dart", "sheets", "gas", "device"];
+    const target = validTabs.includes(tabKey) ? tabKey : "gemini";
+    validTabs.forEach((key) => {
+      const panel = document.getElementById(`manual-panel-${key}`);
+      if (panel) panel.classList.toggle("hidden", key !== target);
+      const btn = document.querySelector(`[data-manual-tab="${key}"]`);
+      if (btn) {
+        btn.className = key === target
+          ? "px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-indigo-600 text-white"
+          : "px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-300";
+      }
+    });
+  }
+
+  function openSetupManualModal(tabKey = "gemini") {
+    switchSetupManualTab(tabKey);
+    document.getElementById("setup-manual-modal")?.classList.remove("hidden");
+  }
+
+  function closeSetupManualModal() {
+    document.getElementById("setup-manual-modal")?.classList.add("hidden");
+  }
+
   function openSheetsGuideModal() {
-    document.getElementById("sheets-guide-modal")?.classList.remove("hidden");
+    openSetupManualModal("sheets");
   }
 
   function closeSheetsGuideModal() {
