@@ -1,4 +1,4 @@
-const CACHE_NAME = "stock-recovery-pro-v1";
+const CACHE_NAME = "stock-recovery-pro-v2";
 const STATIC_ASSETS = ["./", "./index.html", "./manifest.json", "./icon.svg"];
 
 self.addEventListener("install", (event) => {
